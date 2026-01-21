@@ -105,10 +105,11 @@
             border-right: 4px solid #ff6b8b;
         }
         
+        /* زر العودة الأساسي */
         .back-btn {
             display: block;
             width: fit-content;
-            margin: 50px auto;
+            margin: 30px auto;
             background: linear-gradient(135deg, #ff6b8b, #e67b9f);
             color: white;
             border: none;
@@ -125,6 +126,93 @@
         .back-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255, 107, 139, 0.4);
+        }
+        
+        /* زر الرسالة السرية - الجديد */
+        .secret-btn {
+            background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px;
+            transition: all 0.4s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .secret-btn:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 18px 40px rgba(157, 78, 221, 0.6);
+            background: linear-gradient(135deg, #7b2cbf, #5a189a);
+        }
+        
+        .secret-btn:active {
+            transform: translateY(-2px);
+        }
+        
+        .secret-btn i {
+            margin-left: 12px;
+            font-size: 1.4rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .secret-btn:hover i {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        /* تأثير اللمعان على الزر */
+        .secret-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.8s ease;
+            opacity: 0;
+        }
+        
+        .secret-btn:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(30%, 30%);
+        }
+        
+        /* تأثير النبض */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(157, 78, 221, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
+        }
+        
+        .secret-btn {
+            animation: pulse 2s infinite;
+        }
+        
+        /* قسم الأزرار */
+        .buttons-container {
+            text-align: center;
+            margin: 50px 0 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
         }
         
         .heart-icon {
@@ -166,6 +254,15 @@
             
             .photo-card img {
                 height: 250px;
+            }
+            
+            .buttons-container {
+                margin: 40px 0 20px;
+            }
+            
+            .secret-btn, .back-btn {
+                padding: 16px 35px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -280,11 +377,20 @@
             </div>
         </div>
         
-        <!-- زر العودة للصفحة الرئيسية -->
-        <a href="index.html" class="back-btn">
-            <i class="fas fa-home" style="margin-left: 10px;"></i>
-            العودة إلى الصفحة الرئيسية
-        </a>
+        <!-- قسم الأزرار الجديد -->
+        <div class="buttons-container">
+            <!-- زر الرسالة السرية -->
+            <a href="secret.html" class="secret-btn">
+                <i class="fas fa-envelope"></i>
+                اكتشفي الرسالة السرية 💌
+            </a>
+            
+            <!-- زر العودة للصفحة الرئيسية -->
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-home" style="margin-left: 10px;"></i>
+                العودة إلى الصفحة الرئيسية
+            </a>
+        </div>
         
         <footer>
             صنع بكل الحب ❤️ | خاص بـ دودتي فقط
@@ -311,11 +417,19 @@
                     card.style.transform = 'translateY(0)';
                 }, 100 * index);
             });
+            
+            // تأثير للزر السري عند التحميل
+            const secretBtn = document.querySelector('.secret-btn');
+            setTimeout(() => {
+                secretBtn.style.transform = 'scale(1.02)';
+                secretBtn.style.boxShadow = '0 12px 35px rgba(157, 78, 221, 0.5)';
+                
+                setTimeout(() => {
+                    secretBtn.style.transform = 'scale(1)';
+                    secretBtn.style.boxShadow = '0 10px 30px rgba(157, 78, 221, 0.4)';
+                }, 300);
+            }, 1500);
         };
     </script>
 </body>
-    </html>
-<!-- أضف هذا في memories.html مع زر العودة -->
-<a href="secret.html" class="btn" style="background: #9d4edd;">
-    <i class="fas fa-envelope"></i> الرسالة السرية
-</a>
+</html>
