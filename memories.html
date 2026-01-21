@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلتنا معًا 🌸</title>
+    <style>
+        /* ====== الأساسيات ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        :root {
+            --pink-light: #FFF0F6;
+            --pink-medium: #FFD6E7;
+            --pink-dark: #FF6B8B;
+            --gold: #FFD166;
+            --purple: #9D4EDD;
+            --text-dark: #5A3A4A;
+            --text-light: #8A6C7D;
+            --white: #FFFCFD;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fffafb 0%, #fff5f7 100%);
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+        
+        /* ====== الهيدر ====== */
+        .header {
+            text-align: center;
+            padding: 50px 20px 40px;
+            background: linear-gradient(135deg, var(--pink-dark), #E67B9F);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(255, 107, 139, 0.2);
+        }
+        
+        .header::before {
+            content: '❤️';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            top: -50px;
+            left: -50px;
+            transform: rotate(-15deg);
+        }
+        
+        .header::after {
+            content: '🌸';
+            position: absolute;
+            font-size: 250px;
+            opacity: 0.1;
+            bottom: -50px;
+            right: -50px;
+            transform: rotate(15deg);
+        }
+        
+        .page-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: translateX(-5px);
+        }
+        
+        /* ====== معرض الصور ====== */
+        .gallery-container {
+            padding: 40px 20px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        /* ====== بطاقة الصورة ====== */
+        .photo-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.08),
+                0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid rgba(255, 214, 231, 0.6);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(255, 107, 139, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--pink-dark);
+        }
+        
+        .photo-frame {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            background: #f8f8f8;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .photo-card:hover .photo-frame img {
+            transform: scale(1.05);
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 60%,
+                rgba(0, 0, 0, 0.3) 90%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+        
+        .photo-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .photo-title {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        
+        .photo-date {
+            color: var(--pink-dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .photo-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .photo-joke {
+            background: linear-gradient(135deg, rgba(255, 214, 231, 0.2), rgba(255, 182, 217, 0.1));
+            padding: 12px 15px;
+            border-radius: 12px;
+            border-right: 3px solid var(--pink-medium);
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-style: italic;
+            position: relative;
+        }
+        
+        .photo-joke::before {
+            content: '😂';
+            position: absolute;
+            left: 15px;
+            top: -10px;
+            background: white;
+            padding: 0 5px;
+            font-size: 0.8rem;
+        }
+        
+        /* ====== قسم خاص للذكريات ====== */
+        .memory-stats {
+            background: linear-gradient(135deg, var(--pink-medium), #FFB6D9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            color: var(--text-dark);
+            box-shadow: 0 10px 25px rgba(255, 182, 217, 0.3);
+        }
+        
+        .stats-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--pink-dark);
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* ====== فول سكرين للصورة ====== */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--pink-dark);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            background: #ff5577;
+            transform: rotate(90deg);
+        }
+        
+        /* ====== التذييل ====== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            border-top: 1px solid rgba(255, 214, 231, 0.5);
+            margin-top: 40px;
+            background: var(--white);
+        }
+        
+        .heart-animation {
+            color: var(--pink-dark);
+            font-size: 1.5rem;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* ====== متجاوب مع الجوال ====== */
+        @media (max-width: 768px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .header {
+                padding: 40px 15px 30px;
+            }
+            
+            .back-btn {
+                top: 20px;
+                right: 20px;
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .photo-card {
+                height: 380px;
+            }
+            
+            .photo-frame {
+                height: 240px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 1.9rem;
+            }
+            
+            .photo-card {
+                height: 400px;
+            }
+        }
+        
+        /* ====== تأثيرات دخول الصفحة ====== */
+        .photo-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardAppear 0.6s forwards;
+        }
+        
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* تأخير متتالي للبطاقات */
+        .photo-card:nth-child(1) { animation-delay: 0.1s; }
+        .photo-card:nth-child(2) { animation-delay: 0.2s; }
+        .photo-card:nth-child(3) { animation-delay: 0.3s; }
+        .photo-card:nth-child(4) { animation-delay: 0.4s; }
+        .photo-card:nth-child(5) { animation-delay: 0.5s; }
+        .photo-card:nth-child(6) { animation-delay: 0.6s; }
+        .photo-card:nth-child(7) { animation-delay: 0.7s; }
+        .photo-card:nth-child(8) { animation-delay: 0.8s; }
+        .photo-card:nth-child(9) { animation-delay: 0.9s; }
+    </style>
+    
+    <!-- خطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- أيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- الهيدر -->
+    <div class="header">
+        <a href="hub.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i>
+            رجوع
+        </a>
+        <h1 class="page-title">رحلتنا معًا 🛤️</h1>
+        <p class="page-subtitle">
+            كل صورة هنا تحمل قصة، كل ذكرى فيها ضحكة، وكل لحظة بتبني مستقبلنا
+        </p>
+    </div>
+    
+    <!-- إحصائيات -->
+    <div class="memory-stats">
+        <h2 class="stats-title">ذكريات دودتي 📸</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">9</div>
+                <div class="stat-label">لحظة جميلة</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">ذكريات لا تنتهي</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">سعادة مع دودتي</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- معرض الصور -->
+    <div class="gallery-container">
+        <div class="photo-grid" id="photoGrid">
+            <!-- الصور ستضاف هنا بالجافاسكريبت -->
+        </div>
+    </div>
+    
+    <!-- فول سكرين -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="صورة مكبرة">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- التذييل -->
+    <footer>
+        <div style="margin-bottom: 15px;">
+            <span class="heart-animation">❤️</span>
+            صنع بكل الحب لـ دودتي
+            <span class="heart-animation">❤️</span>
+        </div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">
+            © 2024 ذكريات دودتي | خاص بـ دودتي فقط
+        </div>
+    </footer>
+
+    <script>
+        // ====== بيانات الصور مع النكات ======
+        const photosData = [
+            {
+                url: "https://i.postimg.cc/HVd6Hpk4/brgame-screenshot-20250216022027.jpg",
+                title: "بداية مغامرتنا 🎮",
+                date: "16 فبراير 2025",
+                description: "أول مرة نلعب فيها سوا.. وكانت البداية الحلوة لكل الذكريات",
+                joke: "كنت بتخبي وأنا بعرف مكانك كويس.. بس عايز أشوفك 😂"
+            },
+            {
+                url: "https://i.postimg.cc/KRx0FZ89/brgame-screenshot-20250219040240.jpg",
+                title: "فريق الأحلام ⭐",
+                date: "19 فبراير 2025",
+                description: "عندنا سوبر تيم! ما أحد يقدر يوقفنا 👑",
+                joke: "إحنا الاتنين ضد العالم.. والكل بيسقط أمامنا! 💪"
+            },
+            {
+                url: "https://i.postimg.cc/D8nxF2wB/brgame-screenshot-20251104000429.jpg",
+                title: "انتصارات متتالية 🏆",
+                date: "4 نوفمبر 2025",
+                description: "كل مرة نلعب فيها سوا.. كل مرة نفوز فيها سوا",
+                joke: "شايف؟ أنا بحميكي وبخليكي تفوزي دايماً 🛡️"
+            },
+            {
+                url: "https://i.postimg.cc/tYpByX4B/brgame-screenshot-20251212163545.jpg",
+                title: "أبطال السيرفر 🦸‍♀️🦸‍♂️",
+                date: "12 ديسمبر 2025",
+                description: "بقينا مشهورين في اللعبة.. كل الناس عايزة تلعب معانا",
+                joke: "يا دودتي.. مين قال إنك مش أسطورة؟! ✨"
+            },
+            {
+                url: "https://i.postimg.cc/8j4tzq73/Screenshot-2025-05-22-03-17-31-241-com-tencent-ig.jpg",
+                title: "تحديات وضحكات 😄",
+                date: "22 مايو 2025",
+                description: "أصعب المراحل.. لكن معاكي كل حاجة بتكون سهلة",
+                joke: "كنت بتتخبي في الزاوية وانا عارف.. بس مش عايز أفشلك 🤫"
+            },
+            {
+                url: "https://i.postimg.cc/xc5t1WXZ/Screenshot-2025-09-28-03-47-09-426-com-tencent-ig.jpg",
+                title: "تكتيكاتنا السرية 🕵️‍♂️",
+                date: "28 سبتمبر 2025",
+                description: "خططنا اللي ما حدش بيوقع عليها.. سر نجاحنا",
+                joke: "أنا بجهز والمفروض تكوني انتي اللي بتتصوري.. بس طلعت مشغولة 😅"
+            },
+            {
+                url: "https://i.postimg.cc/GHKqmZ4q/Screenshot-2025-10-01-01-40-34-749-com-tencent-ig.jpg",
+                title: "لحظات النصر 🎉",
+                date: "1 أكتوبر 2025",
+                description: "النصر معاكي أحلى من أي فوز في الدنيا",
+                joke: "قولي للناس دي كلها.. دودتي بتفوز عليكم! 🏅"
+            },
+            {
+                url: "https://i.postimg.cc/bsg3wKZL/Screenshot-2026-01-21-19-23-28-212-com-miui-gallery.jpg",
+                title: "ذكريات المصور 📱",
+                date: "21 يناير 2026",
+                description: "لقطات من الكواليس.. مش بس اللعبة، الذكريات الحقيقية",
+                joke: "الصورة دي مش عايزها عالواتس.. عايزها إطار في البيت 🖼️"
+            },
+            {
+                url: "https://i.postimg.cc/Mv5dphn0/Screenshot-2026-01-21-19-23-41-216-com-miui-gallery.jpg",
+                title: "كواليس الأحلام 🌙",
+                date: "21 يناير 2026",
+                description: "وراء كل صورة ناجحة.. ساعات من المرح والضحك",
+                joke: "الموبايل مليان صورك.. وكلها ما تكفيش! 📸"
+            }
+        ];
+
+        // ====== إنشاء معرض الصور ======
+        function createGallery() {
+            const photoGrid = document.getElementById('photoGrid');
+            
+            photosData.forEach((photo, index) => {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.onclick = () => openLightbox(photo.url);
+                
+                card.innerHTML = `
+                    <div class="photo-frame">
+                        <img 
+                            src="${photo.url}" 
+                            alt="${photo.title}"
+                            loading="lazy"
+                            onerror="this.src='https://via.placeholder.com/350x280/FFD6E7/5A3A4A?text=صورة+دودتي'"
+                        >
+                        <div class="photo-overlay"></div>
+                    </div>
+                    <div class="photo-info">
+                        <div>
+                            <h3 class="photo-title">${photo.title}</h3>
+                            <div class="photo-date">
+                                <i class="far fa-calendar-alt"></i>
+                                ${photo.date}
+                            </div>
+                            <p class="photo-desc">${photo.description}</p>
+                        </div>
+                        <div class="photo-joke">${photo.joke}</div>
+                    </div>
+                `;
+                
+                photoGrid.appendChild(card);
+            });
+        }
+        
+        // ====== فتح الصورة بحجم كبير ======
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // منع التمرير
+        }
+        
+        // ====== إغلاق الفول سكرين ======
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // ====== إغلاق بالـ ESC ======
+        doc
