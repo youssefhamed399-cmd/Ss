@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أغانينا 🎵 | دودتي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* نفس خلفية كل الصفحات */
+        body {
+            background: linear-gradient(135deg, #fff0f6, #ffe4e6, #fce7f3);
+            font-family: 'Tajawal', sans-serif;
+            color: #5A3A4A;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #ff6b8b;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: #8A6C7D;
+            font-size: 1.3rem;
+        }
+        
+        /* قسم الفيديو */
+        .video-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid #ffd6e7;
+            box-shadow: 0 15px 35px rgba(255, 107, 139, 0.15);
+            text-align: center;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 3px solid #ffd6e7;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* الرسائل */
+        .message-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px 40px;
+            margin: 40px 0;
+            border: 2px solid #ffd6e7;
+            box-shadow: 0 15px 35px rgba(255, 107, 139, 0.15);
+        }
+        
+        .message-box {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin: 25px 0;
+            border: 2px solid #ffd6e7;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .message-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.2);
+        }
+        
+        .message-text {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #5A3A4A;
+            text-align: right;
+        }
+        
+        /* البرواز الخاص للكلمة الأخيرة */
+        .special-frame {
+            background: linear-gradient(135deg, #fff5f9, #ffeaf3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin: 50px 0;
+            border: 3px solid #ff6b8b;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(255, 107, 139, 0.2);
+            border-left: 10px solid #ff6b8b;
+            border-right: 10px solid #ff6b8b;
+        }
+        
+        .special-frame::before {
+            content: '💗';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            border: 3px solid #ff6b8b;
+        }
+        
+        .special-text {
+            font-size: 1.8rem;
+            color: #ff6b8b;
+            line-height: 1.8;
+            font-weight: bold;
+        }
+        
+        /* أزرار التنقل */
+        .buttons-container {
+            text-align: center;
+            margin: 50px 0 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        /* زر الذكريات - نفس التصميم */
+        .memories-btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        .memories-btn:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 18px 40px rgba(157, 78, 221, 0.6);
+            background: linear-gradient(135deg, #7b2cbf, #5a189a);
+        }
+        
+        /* زر الخط الزمني - لون ذهبي */
+        .timeline-btn {
+            background: linear-gradient(135deg, #ffd166, #ff9e00);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px;
+            transition: all 0.4s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 209, 102, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse-gold 2s infinite;
+        }
+        
+        .timeline-btn:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 18px 40px rgba(255, 209, 102, 0.6);
+            background: linear-gradient(135deg, #ff9e00, #ff8500);
+        }
+        
+        .timeline-btn i {
+            margin-left: 12px;
+            font-size: 1.4rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-btn:hover i {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        /* تأثيرات النبض */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(157, 78, 221, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
+        }
+        
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(255, 209, 102, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(255, 209, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 209, 102, 0); }
+        }
+        
+        .heart-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #ff9bb5;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .video-container, .message-container {
+                padding: 30px 20px;
+            }
+            
+            .special-text {
+                font-size: 1.5rem;
+            }
+            
+            .buttons-container {
+                margin: 40px 0 20px;
+            }
+            
+            .memories-btn, .timeline-btn {
+                padding: 16px 35px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-music heart-icon"></i> أغانينا 🎵</h1>
+            <p class="subtitle">كل لحظة معكِ أغنية... وكل أغنية ذكرى</p>
+        </header>
+        
+        <!-- قسم الفيديو -->
+        <div class="video-container">
+            <h2 style="color: #ff6b8b; margin-bottom: 20px;">🎥 أغنية خاصة لنا</h2>
+            <div class="video-wrapper">
+                <!-- الفيديو سيعمل تلقائياً -->
+                <iframe 
+                    src="https://www.youtube.com/embed/aUjb01q8ZlY?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&loop=1" 
+                    title="أغانينا الخاصة"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="color: #8A6C7D; margin-top: 20px; font-size: 1.1rem;">
+                🔊 الفيديو يشتغل تلقائياً مع صوت
+            </p>
+        </div>
+        
+        <!-- الرسائل -->
+        <div class="message-container">
+            <h2 style="color: #ff6b8b; text-align: center; margin-bottom: 40px;">💌 كلمات من القلب</h2>
+            
+            <!-- الرسالة الأولى -->
+            <div class="message-box">
+                <div class="message-text">
+                    أنا مش عارف أبدأ ازاي أو أقولك إيه الصراحة...<br>
+                    بس أنا بجد عمتا بحبك وبحب روحك النقية العسلية دي.<br>
+                    وبجد سعيد إني عرفتك.
+                </div>
+            </div>
+            
+            <!-- الرسالة الثانية -->
+            <div class="message-box">
+                <div class="message-text">
+                    ساعات بنزعل من بعض وبنتدايق وبنتشاكل وبنعبط بالكلام أنا وإنتي...<br>
+                    بس عمتا الفكرة أننا نرجع في الآخر ونختار نكمل المشوار اللي بدأناه.<br>
+                    المرة دي أنا وإنتي اتعلمنا حاجات كتير سوي.
+                </div>
+            </div>
+            
+            <!-- الرسالة الثالثة -->
+            <div class="message-box">
+                <div class="message-text">
+                    وساعة ما تطرقتي لإنك تمشي وفكرتي إني بايع اللي بينا...<br>
+                    وإني خلاص أصبحت مش زيّ زمان... كل ده عمتا إحنا عارفين إنه كانت سخونة موقف بس.<br>
+                    وإنا عمتا بحبك جداً.
+                </div>
+            </div>
+            
+            <!-- الرسالة الرابعة -->
+            <div class="message-box">
+                <div class="message-text">
+                    وخليكي فاكرة إني هختارك كل مرة زي المرة دي...<br>
+                    ومش هبيع وأرميكي وأقول "كان قلب وراح" والكلام ده...<br>
+                    عشان إنتي غالية عليا، واللي عدينا بيه سوي مش بالقليل وافتكري.
+                </div>
+            </div>
+            
+            <!-- الرسالة الخامسة -->
+            <div class="message-box">
+                <div class="message-text">
+                    إني بحبك زي ما إنتي بعبطك بتلبيخك برخمتك ببرادتك بكله...<br>
+                    عشان أنا اخترت كده، وحقك عليّا في الأمر ده، وزعلك على راسي فيه.<br>
+                    وماتقوليش إني مش حاسس بزعلك دي... أنا بس بتكون بحاول أبعدك عن الزعل فبتاخدي فكرة إني مش شايف زعلك أو مقلّله.<br>
+                    وعمنا بحبك...
+                </div>
+            </div>
+            
+            <!-- البرواز الخاص -->
+            <div class="special-frame">
+                <div class="special-text">
+                    حقك عليا يا بنوتي 💗
+                </div>
+            </div>
+        </div>
+        
+        <!-- أزرار التنقل -->
+        <div class="buttons-container">
+            <!-- زر الذكريات -->
+            <a href="memories.html" class="memories-btn">
+                <i class="fas fa-images"></i>
+                العودة للذكريات 📸
+            </a>
+            
+            <!-- زر الخط الزمني -->
+            <a href="timeline.html" class="timeline-btn">
+                <i class="fas fa-history"></i>
+                خط زمني لحبنا 📅
+            </a>
+        </div>
+        
+        <footer>
+            صنع بكل الحب ❤️ | خاص بـ دودتي فقط
+        </footer>
+    </div>
+
+    <script>
+        // تأكيد تحميل الصفحة
+        window.onload = function() {
+            console.log("🎵 صفحة الأغاني جاهزة!");
+            
+            // تأثير ظهور العناصر
+            const messageBoxes = document.querySelectorAll('.message-box');
+            const videoContainer = document.querySelector('.video-container');
+            const specialFrame = document.querySelector('.special-frame');
+            
+            // إخفاء العناصر أولاً
+            messageBoxes.forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(20px)';
+            });
+            
+            videoContainer.style.opacity = '0';
+            videoContainer.style.transform = 'translateY(20px)';
+            specialFrame.style.opacity = '0';
+            specialFrame.style.transform = 'translateY(20px)';
+            
+            // ظهور العناصر بالتتابع
+            setTimeout(() => {
+                videoContainer.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                videoContainer.style.opacity = '1';
+                videoContainer.style.transform = 'translateY(0)';
+            }, 300);
+            
+            setTimeout(() => {
+                messageBoxes.forEach((box, index) => {
+                    setTimeout(() => {
+                        box.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        box.style.opacity = '1';
+                        box.style.transform = 'translateY(0)';
+                    }, index * 200);
+                });
+            }, 800);
+            
+            setTimeout(() => {
+                specialFrame.style.transition = 'opacity 1s ease, transform 1s ease';
+                specialFrame.style.opacity = '1';
+                specialFrame.style.transform = 'translateY(0)';
+            }, 2000);
+        };
+    </script>
+</body>
+                  </html>
