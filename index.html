@@ -3,637 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لـ دودتي فقط 🌸</title>
+    <title>عالم دودتي 💖</title>
     <style>
-        /* ====== إعدادات عامة محسنة ====== */
+        /* ====== الإعدادات الأساسية ====== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         
         :root {
-            --primary-light: #FFEAF3;
-            --primary-soft: #FFD6E7;
-            --primary-medium: #FFB6D9;
-            --primary-dark: #E67B9F;
-            --accent-gold: #E6C28C;
+            --pink-light: #FFF0F6;
+            --pink-medium: #FFD6E7;
+            --pink-dark: #FF6B8B;
+            --gold: #FFD166;
+            --purple: #9D4EDD;
             --text-dark: #5A3A4A;
             --text-light: #8A6C7D;
-            --success: #8BD3C7;
-            --error: #FF9B9B;
             --white: #FFFCFD;
-            --love-red: #FF6B8B;
         }
         
         body {
-            background: linear-gradient(135deg, #fff0f6 0%, #ffe4e6 50%, #fce7f3 100%);
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--white) 50%, var(--pink-medium) 100%);
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
             color: var(--text-dark);
-            font-family: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
         }
         
-        /* ====== تألق خفيف في الخلفية ====== */
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            opacity: 0;
-            pointer-events: none;
-            animation: sparkleTwinkle 3s infinite;
-        }
-        
-        @keyframes sparkleTwinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 0.6; transform: scale(1); }
-        }
-        
-        /* ====== القلب النابض ====== */
-        .corner-heart {
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            font-size: 32px;
-            color: var(--love-red);
-            cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 3px 6px rgba(255, 107, 139, 0.3));
-            animation: heartbeat 1.5s infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        .corner-heart:hover {
-            transform: scale(1.2);
-            color: var(--primary-dark);
-        }
-        
-        /* ====== الحاوية الرئيسية ====== */
-        .container {
-            background: rgba(255, 252, 253, 0.97);
-            backdrop-filter: blur(15px);
-            border-radius: 28px;
-            padding: 50px 40px;
-            width: 92%;
-            max-width: 520px;
-            box-shadow: 
-                0 25px 50px rgba(230, 123, 159, 0.15),
-                0 10px 20px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-            border: 2px solid rgba(255, 214, 231, 0.8);
+        /* ====== الهيدر ====== */
+        .header {
             text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, var(--pink-dark), #E67B9F);
+            color: white;
+            border-radius: 0 0 40px 40px;
             position: relative;
-            z-index: 10;
-            transform-style: preserve-3d;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
         }
         
-        .container:hover {
-            transform: translateY(-5px) perspective(1000px) rotateX(2deg);
-            box-shadow: 
-                0 35px 70px rgba(230, 123, 159, 0.25),
-                0 15px 30px rgba(0, 0, 0, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="rgba(255,255,255,0.1)" d="M20,20 Q50,10 80,20 T100,50 Q90,80 50,90 T0,50 Q10,20 20,20Z"/></svg>');
+            background-size: 300px;
+            opacity: 0.3;
         }
         
-        /* ====== التأثير اللامع ====== */
-        .container::before {
+        .welcome-text {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .love-icon {
+            font-size: 50px;
+            margin: 20px 0;
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        /* ====== شبكة البطاقات ====== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* ====== بطاقة ====== */
+        .card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 214, 231, 0.5);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--pink-dark);
+            box-shadow: 0 20px 40px rgba(255, 107, 139, 0.25);
+        }
+        
+        .card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, 
-                transparent 0%,
-                var(--accent-gold) 20%,
-                var(--love-red) 50%,
-                var(--accent-gold) 80%,
-                transparent 100%
-            );
+            background: linear-gradient(90deg, var(--pink-dark), var(--purple), var(--gold));
             background-size: 200% 100%;
-            animation: shine 4s infinite linear;
-            border-radius: 28px 28px 0 0;
-            z-index: 2;
+            animation: shimmer 3s infinite linear;
         }
         
-        @keyframes shine {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        
-        /* ====== التاج ====== */
-        .crown {
-            font-size: 52px;
-            margin-bottom: 25px;
-            background: linear-gradient(45deg, var(--accent-gold), #FFD700, var(--accent-gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            filter: drop-shadow(0 8px 16px rgba(230, 194, 140, 0.3));
-            animation: crownGlow 3s infinite alternate;
-        }
-        
-        @keyframes crownGlow {
-            0% { filter: drop-shadow(0 4px 8px rgba(230, 194, 140, 0.3)); }
-            100% { filter: drop-shadow(0 8px 20px rgba(230, 194, 140, 0.5)); }
-        }
-        
-        /* ====== العنوان ====== */
-        h1 {
-            font-size: 2.8rem;
+        .card-icon {
+            font-size: 60px;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
+            background: linear-gradient(135deg, var(--pink-dark), var(--purple));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            line-height: 1.1;
-            text-shadow: 0 2px 10px rgba(255, 107, 139, 0.2);
+            height: 70px;
         }
         
-        .subtitle {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            margin-bottom: 45px;
-            line-height: 1.7;
-            font-weight: 400;
-            padding: 0 15px;
-            opacity: 0.9;
-        }
-        
-        /* ====== حقل كلمة السر ====== */
-        .password-box {
-            position: relative;
-            margin: 35px 0 25px;
-        }
-        
-        .password-input {
-            width: 100%;
-            padding: 20px 60px 20px 25px;
-            font-size: 1.25rem;
-            border: 3px solid var(--primary-soft);
-            border-radius: 20px;
-            background: rgba(255, 252, 253, 0.95);
+        .card-title {
+            font-size: 1.8rem;
             color: var(--text-dark);
-            text-align: right;
-            outline: none;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 
-                inset 0 4px 12px rgba(0, 0, 0, 0.05),
-                0 4px 8px rgba(0, 0, 0, 0.05);
-            font-family: inherit;
-            font-weight: 500;
-        }
-        
-        .password-input:focus {
-            border-color: var(--love-red);
-            box-shadow: 
-                0 0 0 4px rgba(255, 107, 139, 0.2),
-                inset 0 4px 12px rgba(0, 0, 0, 0.08),
-                0 6px 16px rgba(255, 107, 139, 0.25);
-            transform: translateY(-3px);
-            background: var(--white);
-        }
-        
-        .password-input::placeholder {
-            color: #D4A8BC;
-            font-size: 1.1rem;
-            font-weight: 400;
-        }
-        
-        .heart-icon {
-            position: absolute;
-            left: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 26px;
-            color: var(--love-red);
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            animation: floatHeart 3s infinite ease-in-out;
-        }
-        
-        @keyframes floatHeart {
-            0%, 100% { transform: translateY(-50%) rotate(0deg); }
-            50% { transform: translateY(-60%) rotate(10deg); }
-        }
-        
-        .password-input:focus + .heart-icon {
-            opacity: 1;
-            animation: heartBeat 0.8s infinite;
-        }
-        
-        @keyframes heartBeat {
-            0%, 100% { transform: translateY(-50%) scale(1); }
-            50% { transform: translateY(-50%) scale(1.2); }
-        }
-        
-        /* ====== زر الدخول ====== */
-        .enter-btn {
-            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
-            color: var(--white);
-            border: none;
-            padding: 21px 45px;
-            font-size: 1.3rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 100%;
+            margin-bottom: 15px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-top: 30px;
-            box-shadow: 
-                0 10px 30px rgba(255, 107, 139, 0.4),
-                0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-            font-family: inherit;
-            z-index: 1;
         }
         
-        .enter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent
-            );
-            transition: left 0.7s;
-            z-index: -1;
-        }
-        
-        .enter-btn:hover:not(:disabled) {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 
-                0 15px 40px rgba(255, 107, 139, 0.6),
-                0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .enter-btn:hover::before {
-            left: 100%;
-        }
-        
-        .enter-btn:active:not(:disabled) {
-            transform: translateY(-2px) scale(0.99);
-            box-shadow: 
-                0 8px 25px rgba(255, 107, 139, 0.5),
-                0 3px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .enter-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        /* ====== رسالة الخطأ ====== */
-        .error-message {
-            color: var(--error);
-            background: rgba(255, 155, 155, 0.1);
-            padding: 18px;
-            border-radius: 16px;
-            margin: 25px 0;
-            display: none;
-            border-right: 4px solid var(--error);
-            font-size: 1rem;
-            animation: gentleShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 155, 155, 0.3);
-        }
-        
-        @keyframes gentleShake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
-            20%, 40%, 60%, 80% { transform: translateX(8px); }
-        }
-        
-        /* ====== التلميح ====== */
-        .hint-box {
-            margin-top: 35px;
-            padding: 20px;
-            background: linear-gradient(135deg, 
-                rgba(255, 234, 243, 0.6), 
-                rgba(255, 214, 231, 0.8)
-            );
-            border-radius: 18px;
-            border: 2px solid rgba(230, 123, 159, 0.4);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        
-        .hint-box::before {
-            content: '💡';
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            opacity: 0.3;
-        }
-        
-        .hint-box:hover {
-            transform: translateY(-3px);
-            border-color: rgba(230, 123, 159, 0.7);
-            box-shadow: 0 10px 25px rgba(230, 123, 159, 0.15);
-        }
-        
-        .hint-title {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .hint-content {
+        .card-desc {
             color: var(--text-light);
-            font-size: 1.05rem;
             line-height: 1.6;
-            font-weight: 500;
-            padding: 0 10px;
-            min-height: 24px;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            flex-grow: 1;
         }
         
-        .hint-change-btn {
-            background: rgba(230, 123, 159, 0.15);
-            color: var(--primary-dark);
-            border: 1.5px solid rgba(230, 123, 159, 0.3);
-            padding: 10px 25px;
+        .card-btn {
+            background: linear-gradient(135deg, var(--pink-dark), #E67B9F);
+            color: white;
+            border: none;
+            padding: 14px 30px;
             border-radius: 50px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 10px;
+            margin-top: auto;
         }
         
-        .hint-change-btn:hover {
-            background: rgba(230, 123, 159, 0.25);
-            border-color: rgba(230, 123, 159, 0.6);
+        .card-btn:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
         }
         
-        /* ====== رسالة سرية ====== */
-        .secret-note {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, 
-                rgba(255, 252, 253, 0.98), 
-                rgba(255, 240, 246, 0.98)
-            );
-            padding: 18px 25px;
-            border-radius: 20px;
-            font-size: 0.95rem;
+        /* ====== قسم خاص ====== */
+        .special-section {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(255, 214, 231, 0.2));
+            border-radius: 30px;
+            padding: 50px 40px;
+            margin: 40px 20px;
+            text-align: center;
+            border: 2px dashed var(--pink-dark);
+        }
+        
+        .special-title {
+            font-size: 2.2rem;
             color: var(--text-dark);
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.1),
-                0 5px 15px rgba(0, 0, 0, 0.07);
-            border-right: 4px solid var(--love-red);
-            transform: translateY(150px) scale(0.9);
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            max-width: 320px;
-            z-index: 100;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 214, 231, 0.6);
-            text-align: right;
-        }
-        
-        .secret-note i {
-            color: var(--love-red);
-            margin-left: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--purple), var(--pink-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         /* ====== تذييل الصفحة ====== */
         footer {
-            position: fixed;
-            bottom: 30px;
-            width: 100%;
             text-align: center;
+            padding: 40px 20px;
             color: var(--text-light);
-            font-size: 0.9rem;
-            opacity: 0.8;
-            z-index: 5;
-            padding: 0 20px;
-            font-weight: 500;
+            border-top: 2px solid rgba(255, 214, 231, 0.5);
+            margin-top: 40px;
+            background: var(--white);
         }
         
-        /* ====== صفحة النجاح ====== */
-        .success-screen {
+        .footer-heart {
+            color: var(--pink-dark);
+            font-size: 1.5rem;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* ====== متجاوب مع الجوال ====== */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                padding: 30px 15px;
+                gap: 20px;
+            }
+            
+            .welcome-text {
+                font-size: 2.5rem;
+            }
+            
+            .header {
+                padding: 40px 15px 30px;
+            }
+            
+            .card {
+                padding: 25px 20px;
+            }
+            
+            .special-section {
+                padding: 40px 25px;
+                margin: 30px 15px;
+            }
+        }
+        
+        /* ====== تأثيرات ====== */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .floating-hearts {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, 
-                var(--primary-light) 0%,
-                var(--white) 50%,
-                var(--primary-soft) 100%
-            );
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
             pointer-events: none;
-            transition: opacity 0.6s ease;
+            z-index: -1;
         }
         
-        .success-content {
-            background: rgba(255, 252, 253, 0.98);
-            padding: 60px 50px;
-            border-radius: 30px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 
-                0 30px 60px rgba(230, 123, 159, 0.25),
-                0 15px 30px rgba(0, 0, 0, 0.15);
-            border: 2px solid rgba(255, 214, 231, 0.8);
-            transform: scale(0.9);
-            opacity: 0;
-            animation: successPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.3s;
-        }
-        
-        @keyframes successPop {
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        .success-icon {
-            font-size: 80px;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .success-text {
-            font-size: 2.2rem;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .success-subtext {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-        
-        .loader {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            position: relative;
-        }
-        
-        .loader:before {
-            content: '';
-            box-sizing: border-box;
+        .floating-heart {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 5px solid rgba(230, 123, 159, 0.2);
-            border-top-color: var(--love-red);
-            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            font-size: 20px;
+            opacity: 0.1;
+            animation: floatRandom 20s infinite linear;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* ====== متجاوب مع الجوال ====== */
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 30px;
-                margin: 20px;
-                border-radius: 25px;
-                width: 95%;
-            }
-            
-            h1 {
-                font-size: 2.3rem;
-            }
-            
-            .crown {
-                font-size: 44px;
-            }
-            
-            .password-input {
-                padding: 18px 55px 18px 20px;
-                font-size: 1.15rem;
-                border-radius: 18px;
-            }
-            
-            .enter-btn {
-                padding: 19px;
-                font-size: 1.2rem;
-                border-radius: 18px;
-            }
-            
-            .secret-note {
-                right: 20px;
-                left: 20px;
-                max-width: none;
-                text-align: center;
-            }
-            
-            .success-content {
-                padding: 50px 30px;
-            }
-            
-            .success-text {
-                font-size: 1.9rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .subtitle {
-                font-size: 1.05rem;
-                margin-bottom: 35px;
-            }
-            
-            .container {
-                padding: 35px 25px;
-            }
-            
-            .hint-box {
-                padding: 18px 15px;
-            }
-            
-            .secret-note {
-                padding: 15px 20px;
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* ====== تأثيرات دخول الصفحة ====== */
-        @keyframes fadeInUp {
-            from {
+        @keyframes floatRandom {
+            0% { 
+                transform: translate(0, 100vh) rotate(0deg); 
                 opacity: 0;
-                transform: translateY(30px);
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            10% { opacity: 0.1; }
+            90% { opacity: 0.1; }
+            100% { 
+                transform: translate(calc(100vw * var(--end-x)), -100px) rotate(360deg); 
+                opacity: 0;
             }
-        }
-        
-        .container {
-            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
     </style>
     
@@ -644,9 +289,289 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- القلب في الزاوية -->
-    <div class="corner-heart" onclick="showLoveMessage()" title="رسالة حب لـ دودتي">❤️</div>
+    <!-- قلوب طافية -->
+    <div class="floating-hearts" id="floatingHearts"></div>
     
-    <!-- الحاوية الرئيسية -->
-    <div class="container">
-        <!-- 
+    <!-- الهيدر -->
+    <div class="header">
+        <div class="welcome-text">مرحباً يا دودتي 💝</div>
+        <div class="subtitle">أهلاً بيكِ في عالمنا السحري.. اخترِ المكان اللي تحبي تزوريه</div>
+        <div class="love-icon">🌸</div>
+    </div>
+    
+    <!-- شبكة البطاقات -->
+    <div class="cards-grid">
+        <!-- بطاقة الذكريات -->
+        <div class="card" onclick="goToPage('memories')">
+            <div class="card-icon">📖</div>
+            <div class="card-title">ذكرياتنا</div>
+            <div class="card-desc">رحلة في صورنا ولحظاتنا الحلوة، كل ذكرى فيها قصة حب</div>
+            <button class="card-btn">
+                <i class="fas fa-images"></i>
+                ادخلي للذكريات
+            </button>
+        </div>
+        
+        <!-- بطاقة الكتابة -->
+        <div class="card" onclick="goToPage('write')">
+            <div class="card-icon">💌</div>
+            <div class="card-title">رسائل حب</div>
+            <div class="card-desc">مكان تكتبي فيه كل مشاعرك، رسائل حب وتفاصيل صغيرة</div>
+            <button class="card-btn">
+                <i class="fas fa-pen"></i>
+                اكتبي رسالة
+            </button>
+        </div>
+        
+        <!-- بطاقة الخط الزمني -->
+        <div class="card" onclick="goToPage('timeline')">
+            <div class="card-icon">📅</div>
+            <div class="card-title">قصتنا</div>
+            <div class="card-desc">خط زمني لعلاقتنا من أول يوم لحد دلوقتي، كل محطة فيها ذكريات</div>
+            <button class="card-btn">
+                <i class="fas fa-history"></i>
+                شوفي قصتنا
+            </button>
+        </div>
+        
+        <!-- بطاقة المعرض -->
+        <div class="card" onclick="goToPage('gallery')">
+            <div class="card-icon">🖼️</div>
+            <div class="card-title">معرض الصور</div>
+            <div class="card-desc">ألبوم مصور لأجمل لحظاتنا، صور تحكي قصة حبنا</div>
+            <button class="card-btn">
+                <i class="fas fa-camera"></i>
+                شوفي المعرض
+            </button>
+        </div>
+        
+        <!-- بطاقة المفاجآت -->
+        <div class="card" onclick="goToPage('surprises')">
+            <div class="card-icon">🎁</div>
+            <div class="card-title">مفاجآت</div>
+            <div class="card-desc">مفاجآت وهدايا صغيرة، كل يوم فيه شيء جديد يفرحك</div>
+            <button class="card-btn">
+                <i class="fas fa-gift"></i>
+                اكتشفي المفاجآت
+            </button>
+        </div>
+        
+        <!-- بطاقة المستقبل -->
+        <div class="card" onclick="goToPage('future')">
+            <div class="card-icon">✨</div>
+            <div class="card-title">أحلامنا</div>
+            <div class="card-desc">أمنيات وأحلام للمستقبل، أماكن وذكريات بنحلم نعيشها سوا</div>
+            <button class="card-btn">
+                <i class="fas fa-star"></i>
+                خططي للمستقبل
+            </button>
+        </div>
+    </div>
+    
+    <!-- قسم خاص -->
+    <div class="special-section">
+        <div class="special-title">رسالة خاصة لـ دودتي 💝</div>
+        <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 25px; max-width: 800px; margin: 0 auto 25px;">
+            كل بطاقة في هذا المكان تحمل جزء من حبنا وذكرياتنا، اختاري أي مكان وابدئي رحلة في عالمنا السحري
+        </p>
+        <button onclick="showSecretMessage()" style="
+            background: linear-gradient(135deg, var(--purple), #7B2CBF);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: 600;
+        ">
+            <i class="fas fa-heart" style="margin-left: 10px;"></i>
+            رسالة حب يومية
+        </button>
+    </div>
+    
+    <!-- التذييل -->
+    <footer>
+        <div style="margin-bottom: 15px;">
+            <span class="footer-heart">❤️</span>
+            صنع بكل الحب لـ دودتي
+            <span class="footer-heart">❤️</span>
+        </div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">
+            © 2024 عالم دودتي السحري | خاص بـ دودتي فقط
+        </div>
+    </footer>
+
+    <script>
+        // ====== إنشاء قلوب طافية ======
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-heart';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.setProperty('--end-x', Math.random());
+                    heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                    heart.style.color = `hsl(${Math.random() * 60 + 320}, 100%, 70%)`;
+                    heart.style.animationDelay = `${Math.random() * 5}s`;
+                    heart.style.animationDuration = `${Math.random() * 15 + 10}s`;
+                    
+                    container.appendChild(heart);
+                }, i * 300);
+            }
+        }
+        
+        // ====== الانتقال للصفحات ======
+        function goToPage(pageName) {
+            // تأثير النقر على البطاقة
+            event.currentTarget.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                event.currentTarget.style.transform = '';
+            }, 200);
+            
+            // رسالة مؤقتة
+            showMessage(`جاري فتح ${getPageTitle(pageName)}...`);
+            
+            // الانتقال بعد تأخير
+            setTimeout(() => {
+                // حالياً الصفحات مش موجودة، بس بنعديها
+                // لما تعمل الصفحات، غير الرابط
+                window.location.href = `${pageName}.html`;
+            }, 800);
+        }
+        
+        // ====== عناوين الصفحات ======
+        function getPageTitle(pageName) {
+            const titles = {
+                'memories': 'الذكريات',
+                'write': 'رسائل الحب',
+                'timeline': 'قصتنا',
+                'gallery': 'معرض الصور',
+                'surprises': 'المفاجآت',
+                'future': 'أحلامنا'
+            };
+            return titles[pageName] || 'الصفحة';
+        }
+        
+        // ====== رسالة حب يومية ======
+        function showSecretMessage() {
+            const messages = [
+                "دودتي، أنتِ أجمل حاجة في حياتي 💖",
+                "كل يوم معكِ أحلى من اللي فات 🌸",
+                "عيناي مبتسملهمش إلا لما أشوفكِ 😘",
+                "حبي لكِ أكبر من كل الكلمات 💕",
+                "أنتِ النعمة اللي بحمد ربنا عليها كل يوم 🙏",
+                "يدك في إيدي أحلى شعور في الدنيا 👫",
+                "مستحيل أتخيل حياتي من غيركِ 💫",
+                "أنتِ الحب اللي كنت أحلم بيه ✨",
+                "كل شيء فيكِ بيخلي قلبي يطير 🕊️",
+                "معاكِ حتى المشاكل بتكون حلوة 💞"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // إنشاء رسالة عائمة
+            const messageDiv = document.createElement('div');
+            messageDiv.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(255, 252, 253, 0.98);
+                    padding: 40px;
+                    border-radius: 25px;
+                    text-align: center;
+                    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+                    border: 3px solid #FF6B8B;
+                    z-index: 1000;
+                    max-width: 90%;
+                    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                ">
+                    <div style="font-size: 50px; color: #FF6B8B; margin-bottom: 20px;">💌</div>
+                    <div style="font-size: 1.5rem; color: #5A3A4A; margin-bottom: 15px; font-weight: 600;">
+                        رسالة لـ دودتي
+                    </div>
+                    <div style="font-size: 1.2rem; color: #8A6C7D; line-height: 1.6; margin-bottom: 25px;">
+                        ${randomMessage}
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        background: #FF6B8B;
+                        color: white;
+                        border: none;
+                        padding: 12px 30px;
+                        border-radius: 50px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">
+                        شكراً يا حبيبي 💝
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(messageDiv.firstElementChild);
+        }
+        
+        // ====== رسائل مؤقتة ======
+        function showMessage(text) {
+            // إزالة أي رسالة قديمة
+            const oldMsg = document.querySelector('.temp-message');
+            if (oldMsg) oldMsg.remove();
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'temp-message';
+            msgDiv.innerHTML = `
+                <div style="
+                    position: fixed;
+                    bottom: 30px;
+                    right: 30px;
+                    background: linear-gradient(135deg, #FF6B8B, #E67B9F);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 15px;
+                    z-index: 1000;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                    animation: slideUp 0.3s ease;
+                ">
+                    <i class="fas fa-spinner fa-spin" style="margin-left: 10px;"></i>
+                    ${text}
+                </div>
+            `;
+            
+            document.body.appendChild(msgDiv);
+            
+            // إزالة الرسالة بعد 3 ثواني
+            setTimeout(() => {
+                if (msgDiv.parentNode) {
+                    msgDiv.remove();
+                }
+            }, 3000);
+        }
+        
+        // ====== إعداد الصفحة ======
+        window.onload = function() {
+            createFloatingHearts();
+            
+            // رسالة ترحيب في الكونسول
+            console.log("%c 💖 أهلاً يا دودتي في عالمنا السحري 💖", 
+                "color: #FF6B8B; font-size: 18px; font-weight: bold; padding: 10px;");
+            console.log("%c اخترِ أي بطاقة لتبدأ رحلة الحب! 🌸", 
+                "color: #9D4EDD; font-size: 14px;");
+            
+            // تأثيرات دخول الصفحة
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.8s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        };
+        
+        // ====== CSS للرسائل ======
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes popIn {
+                from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    
