@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خط زمني لحبنا 💕 | دودتي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            font-family: 'Tajawal', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #ff6b8b;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 107, 139, 0.5);
+        }
+        
+        .subtitle {
+            color: #a5b4fc;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+        
+        /* الخط الزمني */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        
+        /* الخط العمودي */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b8b, #9d4edd, #4cc9f0);
+            border-radius: 2px;
+        }
+        
+        /* نقطة على الخط */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 80px;
+            width: 45%;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* العناصر على اليمين */
+        .timeline-item:nth-child(odd) {
+            margin-left: 55%;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(76, 201, 240, 0.15));
+            border: 2px solid rgba(157, 78, 221, 0.4);
+        }
+        
+        /* العناصر على اليسار */
+        .timeline-item:nth-child(even) {
+            margin-right: 55%;
+            background: linear-gradient(135deg, rgba(255, 107, 139, 0.15), rgba(157, 78, 221, 0.15));
+            border: 2px solid rgba(255, 107, 139, 0.4);
+        }
+        
+        /* الدائرة على الخط */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            top: 30px;
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            right: -56px;
+            background: #9d4edd;
+            box-shadow: 0 0 0 8px rgba(157, 78, 221, 0.3);
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            left: -56px;
+            background: #ff6b8b;
+            box-shadow: 0 0 0 8px rgba(255, 107, 139, 0.3);
+        }
+        
+        .date {
+            font-size: 2rem;
+            color: #ffd166;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .date-description {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        /* العداد */
+        .counter-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 70px auto;
+            max-width: 700px;
+            border: 2px solid rgba(255, 209, 102, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter-title {
+            font-size: 2rem;
+            color: #ffd166;
+            margin-bottom: 30px;
+        }
+        
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .counter-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .counter-box:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .counter-number {
+            font-size: 2.8rem;
+            color: #ff6b8b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .counter-label {
+            font-size: 1.1rem;
+            color: #a5b4fc;
+        }
+        
+        .counter-message {
+            font-size: 1.3rem;
+            color: #e0e0e0;
+            margin-top: 25px;
+            line-height: 1.8;
+        }
+        
+        /* الرسالة النهائية */
+        .final-message {
+            background: linear-gradient(135deg, rgba(255, 107, 139, 0.2), rgba(157, 78, 221, 0.2));
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px auto;
+            max-width: 800px;
+            border: 2px solid rgba(255, 107, 139, 0.3);
+            text-align: center;
+        }
+        
+        .final-message p {
+            font-size: 1.4rem;
+            line-height: 1.9;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .heart-line {
+            font-size: 1.8rem;
+            color: #ff6b8b;
+            margin-top: 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* أزرار التنقل */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #ff6b8b, #e67b9f);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 40px rgba(255, 107, 139, 0.5);
+        }
+        
+        .nav-btn i {
+            margin-left: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-btn:hover i {
+            transform: rotate(10deg);
+        }
+        
+        /* زر الرسالة السرية */
+        .secret-btn {
+            background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 85%;
+                margin-left: 15% !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: -40px;
+                right: auto;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                min-width: 250px;
+            }
+        }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌸 خط زمني لحبنا 💕</h1>
+            <p class="subtitle">رحلة لا تنتهي... بدأت بفخ وانتهت بحب أبدي</p>
+        </header>
+        
+        <div class="timeline">
+            <!-- التاريخ الأول -->
+            <div class="timeline-item">
+                <div class="date">أكتوبر 2024</div>
+                <div class="date-description">
+                    أول مرة أعرفك... كانت بداية الفخ 🕸️<br>
+                    لم أكن أعلم أن هذه البداية ستكون أجمل قصة في حياتي
+                </div>
+            </div>
+            
+            <!-- التاريخ الثاني -->
+            <div class="timeline-item">
+                <div class="date">١ مارس ٢٠٢٥</div>
+                <div class="date-description">
+                    اليوم الذي وقعت فيه في الفخ...<br>
+                    💘 كانت أحلى وقعة في حياتي<br>
+                    اليوم الذي غير كل شيء
+                </div>
+            </div>
+            
+            <!-- التاريخ الثالث -->
+            <div class="timeline-item">
+                <div class="date">٢٠ أكتوبر ٢٠٢٥</div>
+                <div class="date-description">
+                    يوم رأيتك... ووقعت للمرة الثانية في حبك 😍<br>
+                    هذه المرة كان السقوط أعمق، والحب أقوى
+                </div>
+            </div>
+        </div>
+        
+        <!-- العداد -->
+        <div class="counter-container">
+            <div class="counter-title">🏃‍♂️ كم مضى من عمر حبنا؟</div>
+            <div class="counter-grid">
+                <div class="counter-box">
+                    <div class="counter-number" id="days">0</div>
+                    <div class="counter-label">يوم</div>
+                </div>
+                <div class="counter-box">
+                    <div class="counter-number" id="weeks">0</div>
+                    <div class="counter-label">أسبوع</div>
+                </div>
+                <div class="counter-box">
+                    <div class="counter-number" id="months">0</div>
+                    <div class="counter-label">شهر</div>
+                </div>
+                <div class="counter-box">
+                    <div class="counter-number" id="hours">0</div>
+                    <div class="counter-label">ساعة</div>
+                </div>
+            </div>
+            <div class="counter-message">
+                ⏳ العد مستمر منذ ١ مارس ٢٠٢٥<br>
+                💖 ولا زلنا نكتب فصول قصتنا
+            </div>
+        </div>
+        
+        <!-- الرسالة النهائية -->
+        <div class="final-message">
+            <p>ولا أرغب سوى أن أكمل العمر معكِ بشقائه وراحته وحزنه ومسراته</p>
+            <p>وأن نقضي معاً ما تبقى...</p>
+            <div class="heart-line">وأحبك إلى ما لا نهاية ♥️</div>
+        </div>
+        
+        <!-- أزرار التنقل -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i>
+                الصفحة الرئيسية
+            </a>
+            
+            <a href="memories.html" class="nav-btn">
+                <i class="fas fa-images"></i>
+                الذكريات
+            </a>
+            
+            <a href="secret.html" class="nav-btn secret-btn">
+                <i class="fas fa-envelope"></i>
+                الرسالة السرية
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // حساب الوقت منذ ١ مارس ٢٠٢٥
+        function updateCounter() {
+            // تاريخ البداية: ١ مارس ٢٠٢٥
+            const startDate = new Date('2025-03-01T00:00:00');
+            const now = new Date();
+            
+            // الفرق بالمللي ثانية
+            const diffMs = now - startDate;
+            
+            // الحسابات
+            const diffSeconds = Math.floor(diffMs / 1000);
+            const diffMinutes = Math.floor(diffSeconds / 60);
+            const diffHours = Math.floor(diffMinutes / 60);
+            const diffDays = Math.floor(diffHours / 24);
+            const diffWeeks = Math.floor(diffDays / 7);
+            const diffMonths = Math.floor(diffDays / 30.44); // متوسط أيام الشهر
+            
+            // تحديث الأرقام
+            document.getElementById('days').textContent = diffDays.toLocaleString('ar-EG');
+            document.getElementById('weeks').textContent = diffWeeks.toLocaleString('ar-EG');
+            document.getElementById('months').textContent = diffMonths.toLocaleString('ar-EG');
+            document.getElementById('hours').textContent = diffHours.toLocaleString('ar-EG');
+            
+            // تحديث العداد كل ثانية
+            setTimeout(updateCounter, 1000);
+        }
+        
+        // تأثيرات عند تحميل الصفحة
+        window.onload = function() {
+            console.log("📅 صفحة الخط الزمني جاهزة!");
+            
+            // بدء العداد
+            updateCounter();
+            
+            // تأثير ظهور العناصر
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const counterContainer = document.querySelector('.counter-container');
+            const finalMessage = document.querySelector('.final-message');
+            
+            // إخفاء العناصر أولاً
+            timelineItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+            });
+            
+            counterContainer.style.opacity = '0';
+            counterContainer.style.transform = 'translateY(30px)';
+            finalMessage.style.opacity = '0';
+            finalMessage.style.transform = 'translateY(30px)';
+            
+            // ظهور العناصر بالتتابع
+            setTimeout(() => {
+                timelineItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 300);
+                });
+            }, 500);
+            
+            setTimeout(() => {
+                counterContainer.style.transition = 'opacity 1s ease, transform 1s ease';
+                counterContainer.style.opacity = '1';
+                counterContainer.style.transform = 'translateY(0)';
+            }, 1400);
+            
+            setTimeout(() => {
+                finalMessage.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+                finalMessage.style.opacity = '1';
+                finalMessage.style.transform = 'translateY(0)';
+            }, 1800);
+        };
+    </script>
+</body>
+</html>
