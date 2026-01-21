@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لـ دودتي فقط 🌸</title>
     <style>
-        /* ====== إعدادات عامة محسنة للأداء ====== */
+        /* ====== إعدادات عامة محسنة ====== */
         * {
             margin: 0;
             padding: 0;
@@ -14,7 +14,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
-        /* ====== ألوان هادئة ومريحة للعين ====== */
         :root {
             --primary-light: #FFEAF3;
             --primary-soft: #FFD6E7;
@@ -26,12 +25,13 @@
             --success: #8BD3C7;
             --error: #FF9B9B;
             --white: #FFFCFD;
+            --love-red: #FF6B8B;
         }
         
         body {
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 50%, var(--primary-soft) 100%);
+            background: linear-gradient(135deg, #fff0f6 0%, #ffe4e6 50%, #fce7f3 100%);
             color: var(--text-dark);
-            font-family: 'Tajawal', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -41,194 +41,265 @@
             line-height: 1.6;
         }
         
-        /* ====== خلفية بسيطة بدون تأثيرات ثقيلة ====== */
-        .bg-decoration {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .bg-dot {
+        /* ====== تألق خفيف في الخلفية ====== */
+        .sparkle {
             position: absolute;
             width: 4px;
             height: 4px;
-            background: var(--primary-medium);
+            background: var(--accent-gold);
             border-radius: 50%;
-            opacity: 0.15;
+            opacity: 0;
+            pointer-events: none;
+            animation: sparkleTwinkle 3s infinite;
         }
         
-        /* ====== القلب النابض الخفيف ====== */
+        @keyframes sparkleTwinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.6; transform: scale(1); }
+        }
+        
+        /* ====== القلب النابض ====== */
         .corner-heart {
             position: fixed;
             top: 25px;
             left: 25px;
-            font-size: 28px;
-            color: var(--primary-dark);
+            font-size: 32px;
+            color: var(--love-red);
             cursor: pointer;
             z-index: 100;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 3px 6px rgba(255, 107, 139, 0.3));
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
         
         .corner-heart:hover {
-            transform: scale(1.1);
-            color: var(--accent-gold);
+            transform: scale(1.2);
+            color: var(--primary-dark);
         }
         
-        /* ====== الحاوية الرئيسية - تصميم أنيق ====== */
+        /* ====== الحاوية الرئيسية ====== */
         .container {
-            background: rgba(255, 252, 253, 0.96);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 45px 35px;
+            background: rgba(255, 252, 253, 0.97);
+            backdrop-filter: blur(15px);
+            border-radius: 28px;
+            padding: 50px 40px;
             width: 92%;
-            max-width: 480px;
+            max-width: 520px;
             box-shadow: 
-                0 8px 32px rgba(230, 123, 159, 0.08),
-                0 2px 8px rgba(0, 0, 0, 0.04),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            border: 1.5px solid rgba(255, 214, 231, 0.6);
+                0 25px 50px rgba(230, 123, 159, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 214, 231, 0.8);
             text-align: center;
             position: relative;
             z-index: 10;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .container:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px) perspective(1000px) rotateX(2deg);
             box-shadow: 
-                0 12px 40px rgba(230, 123, 159, 0.12),
-                0 4px 12px rgba(0, 0, 0, 0.06),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+                0 35px 70px rgba(230, 123, 159, 0.25),
+                0 15px 30px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95);
         }
         
-        /* ====== التاج المعدل ====== */
+        /* ====== التأثير اللامع ====== */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                var(--accent-gold) 20%,
+                var(--love-red) 50%,
+                var(--accent-gold) 80%,
+                transparent 100%
+            );
+            background-size: 200% 100%;
+            animation: shine 4s infinite linear;
+            border-radius: 28px 28px 0 0;
+            z-index: 2;
+        }
+        
+        @keyframes shine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* ====== التاج ====== */
         .crown {
-            font-size: 46px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent-gold), #F4D7A0);
+            font-size: 52px;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, var(--accent-gold), #FFD700, var(--accent-gold));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             display: inline-block;
-            filter: drop-shadow(0 4px 8px rgba(230, 194, 140, 0.2));
+            filter: drop-shadow(0 8px 16px rgba(230, 194, 140, 0.3));
+            animation: crownGlow 3s infinite alternate;
+        }
+        
+        @keyframes crownGlow {
+            0% { filter: drop-shadow(0 4px 8px rgba(230, 194, 140, 0.3)); }
+            100% { filter: drop-shadow(0 8px 20px rgba(230, 194, 140, 0.5)); }
         }
         
         /* ====== العنوان ====== */
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--primary-dark), #D46B8F);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -0.5px;
-            line-height: 1.2;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(255, 107, 139, 0.2);
         }
         
         .subtitle {
             color: var(--text-light);
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            line-height: 1.6;
+            font-size: 1.2rem;
+            margin-bottom: 45px;
+            line-height: 1.7;
             font-weight: 400;
-            padding: 0 10px;
+            padding: 0 15px;
+            opacity: 0.9;
         }
         
-        /* ====== حقل كلمة السر - تصميم مريح ====== */
+        /* ====== حقل كلمة السر ====== */
         .password-box {
             position: relative;
-            margin: 30px 0;
+            margin: 35px 0 25px;
         }
         
         .password-input {
             width: 100%;
-            padding: 18px 50px 18px 25px;
-            font-size: 1.15rem;
-            border: 2px solid var(--primary-soft);
-            border-radius: 18px;
-            background: var(--white);
+            padding: 20px 60px 20px 25px;
+            font-size: 1.25rem;
+            border: 3px solid var(--primary-soft);
+            border-radius: 20px;
+            background: rgba(255, 252, 253, 0.95);
             color: var(--text-dark);
             text-align: right;
             outline: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                inset 0 4px 12px rgba(0, 0, 0, 0.05),
+                0 4px 8px rgba(0, 0, 0, 0.05);
             font-family: inherit;
+            font-weight: 500;
         }
         
         .password-input:focus {
-            border-color: var(--primary-dark);
+            border-color: var(--love-red);
             box-shadow: 
-                0 0 0 3px rgba(230, 123, 159, 0.15),
-                inset 0 2px 6px rgba(0, 0, 0, 0.05);
-            transform: translateY(-1px);
+                0 0 0 4px rgba(255, 107, 139, 0.2),
+                inset 0 4px 12px rgba(0, 0, 0, 0.08),
+                0 6px 16px rgba(255, 107, 139, 0.25);
+            transform: translateY(-3px);
+            background: var(--white);
         }
         
         .password-input::placeholder {
-            color: #C8A8B8;
-            font-size: 1.05rem;
-            font-weight: 300;
+            color: #D4A8BC;
+            font-size: 1.1rem;
+            font-weight: 400;
         }
         
         .heart-icon {
             position: absolute;
-            left: 20px;
+            left: 25px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 22px;
-            color: var(--primary-dark);
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            font-size: 26px;
+            color: var(--love-red);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            animation: floatHeart 3s infinite ease-in-out;
+        }
+        
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-60%) rotate(10deg); }
         }
         
         .password-input:focus + .heart-icon {
             opacity: 1;
-            animation: gentlePulse 1.5s infinite;
+            animation: heartBeat 0.8s infinite;
         }
         
-        @keyframes gentlePulse {
-            0%, 100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
-            50% { opacity: 1; transform: translateY(-50%) scale(1.05); }
+        @keyframes heartBeat {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
         }
         
-        /* ====== زر الدخول - تصميم عصري ====== */
+        /* ====== زر الدخول ====== */
         .enter-btn {
-            background: linear-gradient(135deg, var(--primary-dark), #D46B8F);
+            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
             color: var(--white);
             border: none;
-            padding: 18px 35px;
-            font-size: 1.2rem;
-            border-radius: 18px;
+            padding: 21px 45px;
+            font-size: 1.3rem;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             width: 100%;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            margin-top: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-top: 30px;
             box-shadow: 
-                0 6px 20px rgba(230, 123, 159, 0.25),
-                0 2px 4px rgba(0, 0, 0, 0.05);
+                0 10px 30px rgba(255, 107, 139, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
             font-family: inherit;
+            z-index: 1;
+        }
+        
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent
+            );
+            transition: left 0.7s;
+            z-index: -1;
         }
         
         .enter-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 
-                0 10px 25px rgba(230, 123, 159, 0.35),
-                0 3px 6px rgba(0, 0, 0, 0.08);
-            background: linear-gradient(135deg, #E67B9F, #D45B85);
+                0 15px 40px rgba(255, 107, 139, 0.6),
+                0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .enter-btn:hover::before {
+            left: 100%;
         }
         
         .enter-btn:active:not(:disabled) {
-            transform: translateY(-1px);
+            transform: translateY(-2px) scale(0.99);
             box-shadow: 
-                0 4px 12px rgba(230, 123, 159, 0.3),
-                0 1px 2px rgba(0, 0, 0, 0.05);
+                0 8px 25px rgba(255, 107, 139, 0.5),
+                0 3px 6px rgba(0, 0, 0, 0.1);
         }
         
         .enter-btn:disabled {
@@ -240,167 +311,320 @@
         /* ====== رسالة الخطأ ====== */
         .error-message {
             color: var(--error);
-            background: rgba(255, 155, 155, 0.08);
-            padding: 14px;
-            border-radius: 14px;
-            margin: 20px 0;
+            background: rgba(255, 155, 155, 0.1);
+            padding: 18px;
+            border-radius: 16px;
+            margin: 25px 0;
             display: none;
-            border-right: 3px solid var(--error);
-            font-size: 0.95rem;
-            animation: gentleShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            border-right: 4px solid var(--error);
+            font-size: 1rem;
+            animation: gentleShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 155, 155, 0.3);
         }
         
         @keyframes gentleShake {
             0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+            20%, 40%, 60%, 80% { transform: translateX(8px); }
         }
         
         /* ====== التلميح ====== */
-        .hint {
+        .hint-box {
+            margin-top: 35px;
+            padding: 20px;
+            background: linear-gradient(135deg, 
+                rgba(255, 234, 243, 0.6), 
+                rgba(255, 214, 231, 0.8)
+            );
+            border-radius: 18px;
+            border: 2px solid rgba(230, 123, 159, 0.4);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .hint-box::before {
+            content: '💡';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            opacity: 0.3;
+        }
+        
+        .hint-box:hover {
+            transform: translateY(-3px);
+            border-color: rgba(230, 123, 159, 0.7);
+            box-shadow: 0 10px 25px rgba(230, 123, 159, 0.15);
+        }
+        
+        .hint-title {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .hint-content {
             color: var(--text-light);
-            font-size: 0.95rem;
-            margin-top: 25px;
-            padding: 15px;
-            background: rgba(255, 214, 231, 0.15);
-            border-radius: 14px;
-            border: 1.5px dashed rgba(230, 123, 159, 0.3);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            font-weight: 500;
+            padding: 0 10px;
+            min-height: 24px;
+        }
+        
+        .hint-change-btn {
+            background: rgba(230, 123, 159, 0.15);
+            color: var(--primary-dark);
+            border: 1.5px solid rgba(230, 123, 159, 0.3);
+            padding: 10px 25px;
+            border-radius: 50px;
             cursor: pointer;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
             transition: all 0.3s ease;
-            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .hint:hover {
-            background: rgba(255, 214, 231, 0.25);
-            border-color: rgba(230, 123, 159, 0.5);
+        .hint-change-btn:hover {
+            background: rgba(230, 123, 159, 0.25);
+            border-color: rgba(230, 123, 159, 0.6);
+            transform: scale(1.05);
         }
         
-        /* ====== رسالة السرية ====== */
+        /* ====== رسالة سرية ====== */
         .secret-note {
             position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: rgba(255, 252, 253, 0.95);
-            padding: 14px 20px;
-            border-radius: 16px;
-            font-size: 0.9rem;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, 
+                rgba(255, 252, 253, 0.98), 
+                rgba(255, 240, 246, 0.98)
+            );
+            padding: 18px 25px;
+            border-radius: 20px;
+            font-size: 0.95rem;
             color: var(--text-dark);
             box-shadow: 
-                0 6px 20px rgba(0, 0, 0, 0.08),
-                0 2px 4px rgba(0, 0, 0, 0.04);
-            border-right: 3px solid var(--primary-medium);
-            transform: translateY(120px);
+                0 15px 35px rgba(0, 0, 0, 0.1),
+                0 5px 15px rgba(0, 0, 0, 0.07);
+            border-right: 4px solid var(--love-red);
+            transform: translateY(150px) scale(0.9);
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            max-width: 300px;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 320px;
             z-index: 100;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 214, 231, 0.4);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 214, 231, 0.6);
+            text-align: right;
+        }
+        
+        .secret-note i {
+            color: var(--love-red);
+            margin-left: 10px;
+            font-size: 1.1rem;
         }
         
         /* ====== تذييل الصفحة ====== */
         footer {
             position: fixed;
-            bottom: 25px;
+            bottom: 30px;
             width: 100%;
             text-align: center;
             color: var(--text-light);
-            font-size: 0.85rem;
-            opacity: 0.7;
+            font-size: 0.9rem;
+            opacity: 0.8;
             z-index: 5;
             padding: 0 20px;
+            font-weight: 500;
         }
         
-        /* ====== تأثيرات بسيطة للنجاح ====== */
-        .success-overlay {
+        /* ====== صفحة النجاح ====== */
+        .success-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 252, 253, 0.95);
+            background: linear-gradient(135deg, 
+                var(--primary-light) 0%,
+                var(--white) 50%,
+                var(--primary-soft) 100%
+            );
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
         }
         
-        /* ====== متجاوب مع الجوال - محسن ====== */
+        .success-content {
+            background: rgba(255, 252, 253, 0.98);
+            padding: 60px 50px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 
+                0 30px 60px rgba(230, 123, 159, 0.25),
+                0 15px 30px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 214, 231, 0.8);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: successPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.3s;
+        }
+        
+        @keyframes successPop {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .success-text {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--love-red), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .success-subtext {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+        
+        .loader:before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 5px solid rgba(230, 123, 159, 0.2);
+            border-top-color: var(--love-red);
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ====== متجاوب مع الجوال ====== */
         @media (max-width: 768px) {
             .container {
-                padding: 35px 25px;
+                padding: 40px 30px;
                 margin: 20px;
-                border-radius: 20px;
+                border-radius: 25px;
                 width: 95%;
             }
             
             h1 {
-                font-size: 2.1rem;
+                font-size: 2.3rem;
             }
             
             .crown {
-                font-size: 40px;
+                font-size: 44px;
             }
             
             .password-input {
-                padding: 16px 45px 16px 20px;
-                font-size: 1.1rem;
-                border-radius: 16px;
+                padding: 18px 55px 18px 20px;
+                font-size: 1.15rem;
+                border-radius: 18px;
             }
             
             .enter-btn {
-                padding: 16px;
-                font-size: 1.15rem;
-                border-radius: 16px;
-            }
-            
-            .corner-heart {
-                top: 20px;
-                left: 20px;
-                font-size: 26px;
+                padding: 19px;
+                font-size: 1.2rem;
+                border-radius: 18px;
             }
             
             .secret-note {
-                right: 15px;
-                left: 15px;
+                right: 20px;
+                left: 20px;
                 max-width: none;
                 text-align: center;
+            }
+            
+            .success-content {
+                padding: 50px 30px;
+            }
+            
+            .success-text {
+                font-size: 1.9rem;
             }
         }
         
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.9rem;
+                font-size: 2rem;
             }
             
             .subtitle {
-                font-size: 1rem;
-                margin-bottom: 30px;
+                font-size: 1.05rem;
+                margin-bottom: 35px;
             }
             
             .container {
-                padding: 30px 20px;
+                padding: 35px 25px;
+            }
+            
+            .hint-box {
+                padding: 18px 15px;
+            }
+            
+            .secret-note {
+                padding: 15px 20px;
+                font-size: 0.9rem;
             }
         }
         
-        /* ====== تحسينات للأداء ====== */
-        .will-change {
-            will-change: transform, opacity;
-        }
-        
-        /* ====== تحسين خطي للتركيز ====== */
-        *:focus {
-            outline: none;
-        }
-        
-        /* ====== تأثيرات دقيقة عند التحميل ====== */
+        /* ====== تأثيرات دخول الصفحة ====== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -409,212 +633,20 @@
         }
         
         .container {
-            animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
         }
     </style>
     
-    <!-- خطوط سريعة التحميل -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- خطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- أيقونات خفيفة -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- أيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- القلب في الزاوية -->
-    <div class="corner-heart" onclick="showLoveMessage()" title="اضغط لرسالة خاصة">❤️</div>
-    
-    <!-- خلفية خفيفة -->
-    <div class="bg-decoration" id="bgDecoration"></div>
+    <div class="corner-heart" onclick="showLoveMessage()" title="رسالة حب لـ دودتي">❤️</div>
     
     <!-- الحاوية الرئيسية -->
     <div class="container">
-        <!-- التاج -->
-        <div class="crown">👑</div>
-        
-        <!-- العنوان -->
-        <h1>أهلاً يا دودتي</h1>
-        <p class="subtitle">
-            هذا المكان صنعته لكِ بكل الحب<br>
-            أدخلي كلمتنا السرية الحلوة
-        </p>
-        
-        <!-- حقل كلمة السر -->
-        <div class="password-box">
-            <div class="heart-icon">💖</div>
-            <input 
-                type="password" 
-                id="passwordInput" 
-                class="password-input" 
-                placeholder="كلمتنا السرية..."
-                onkeypress="if(event.key === 'Enter') checkPassword()"
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                spellcheck="false"
-            >
-        </div>
-        
-        <!-- رسالة الخطأ -->
-        <div id="errorMessage" class="error-message">
-            كلمة السر غير صحيحة! حاولي مرة أخرى يا حبيبتي 💔
-        </div>
-        
-        <!-- زر الدخول -->
-        <button class="enter-btn" onclick="checkPassword()" id="enterBtn">
-            <i class="fas fa-lock-open" style="margin-left: 10px;"></i>
-            ادخلي إلى عالمنا
-        </button>
-        
-        <!-- التلميح -->
-        <div class="hint" onclick="revealHint()">
-            <i class="fas fa-lightbulb" style="margin-left: 8px;"></i>
-            <span id="hintText">اضغطي هنا للمساعدة</span>
-        </div>
-    </div>
-    
-    <!-- رسالة سرية -->
-    <div class="secret-note" id="secretNote">
-        <i class="fas fa-heart" style="margin-left: 8px; color: var(--primary-dark);"></i>
-        <span id="noteText">أنتِ أجمل ما في حياتي يا دودتي</span>
-    </div>
-    
-    <!-- تذييل الصفحة -->
-    <footer>
-        صنع بكل الحب ❤️ | خاص بـ دودتي فقط
-    </footer>
-    
-    <!-- طبقة النجاح -->
-    <div class="success-overlay" id="successOverlay"></div>
-
-    <script>
-        // ====== إعدادات سريعة ======
-        const CONFIG = {
-            PASSWORD: "اتولتي", // كلمة السر الجديدة
-            REDIRECT_DELAY: 1800, // وقت الانتقال (أقل لسرعة أكبر)
-            MESSAGE_DURATION: 3500, // مدة الرسائل
-            HINT_CHANGE_DELAY: 2000 // تأخير تغيير التلميح
-        };
-
-        // ====== البيانات ======
-        const HINTS = [
-            "كلمة من 5 حروف",
-            "أول حرف: ا",
-            "كلمة بين الأحبة",
-            "اللي أنا بقوله لكِ دايماً"
-        ];
-        
-        const SECRET_MESSAGES = [
-            "عيناي تبتسمان كلما رأتكِ يا دودتي",
-            "وجودكِ في حياتي هو أجمل هدية",
-            "قلبي يعرف طريقكِ حتى في الظلام",
-            "أنتِ حديقة أحلامي وونس حياتي",
-            "كل ذكرى معكِ هي كنز لا يفنى",
-            "دودتي، أنتِ سبب سعادتي دايماً",
-            "الحب معكِ أجمل مما تخيلت",
-            "أنتِ النور اللي بيضيء أيامي"
-        ];
-        
-        // ====== حالة التطبيق ======
-        let isProcessing = false;
-        let activeAnimations = [];
-
-        // ====== تهيئة الصفحة ======
-        function initPage() {
-            createBackgroundDots();
-            setupEventListeners();
-            setInitialFocus();
-            showWelcomeMessage();
-            
-            // تسريع الأداء
-            performance.mark('pageLoaded');
-        }
-        
-        // ====== إنشاء خلفية بسيطة ======
-        function createBackgroundDots() {
-            const container = document.getElementById('bgDecoration');
-            const dotCount = Math.min(40, Math.floor(window.innerWidth / 25));
-            
-            for (let i = 0; i < dotCount; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'bg-dot';
-                
-                dot.style.left = `${Math.random() * 100}%`;
-                dot.style.top = `${Math.random() * 100}%`;
-                dot.style.opacity = `${Math.random() * 0.15 + 0.05}`;
-                dot.style.width = dot.style.height = `${Math.random() * 4 + 2}px`;
-                
-                // حركة بطيئة جداً
-                if (Math.random() > 0.7) {
-                    dot.animate([
-                        { transform: 'translateY(0px)' },
-                        { transform: `translateY(${Math.random() * 20 - 10}px)` }
-                    ], {
-                        duration: Math.random() * 10000 + 10000,
-                        iterations: Infinity,
-                        direction: 'alternate'
-                    });
-                }
-                
-                container.appendChild(dot);
-            }
-        }
-        
-        // ====== إعداد مستمعي الأحداث ======
-        function setupEventListeners() {
-            const input = document.getElementById('passwordInput');
-            const btn = document.getElementById('enterBtn');
-            
-            // كتابة سريعة
-            input.addEventListener('input', function() {
-                if (this.value.length > 0) {
-                    document.getElementById('errorMessage').style.display = 'none';
-                }
-            });
-            
-            // منع النقر المزدوج
-            btn.addEventListener('click', function(e) {
-                if (isProcessing) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return false;
-                }
-            });
-        }
-        
-        // ====== تركيز أولي ======
-        function setInitialFocus() {
-            setTimeout(() => {
-                document.getElementById('passwordInput').focus();
-            }, 300);
-        }
-        
-        // ====== التحقق من كلمة السر (محسنة للأداء) ======
-        function checkPassword() {
-            if (isProcessing) return;
-            
-            const input = document.getElementById('passwordInput');
-            const errorDiv = document.getElementById('errorMessage');
-            const btn = document.getElementById('enterBtn');
-            const password = input.value.trim();
-            
-            isProcessing = true;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-left: 10px;"></i> جاري التحقق...';
-            
-            // محاكاة تأخير طفيف للواقعية
-            setTimeout(() => {
-                if (password === CONFIG.PASSWORD) {
-                    handleSuccess();
-                } else {
-                    handleError();
-                }
-                
-                isProcessing = false;
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-lock-open" style="margin-left: 10px;"></i> ادخلي إلى عالمنا';
-            }, 300);
-        }
-        
-        // ====== معالجة النجا
+        <!-- 
